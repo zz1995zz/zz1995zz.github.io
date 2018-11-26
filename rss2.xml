@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ZZ的个人博客</title>
+    <link>http://yoursite.com/</link>
+    <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description>一直在路上</description>
+    <pubDate>Mon, 26 Nov 2018 05:39:27 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>利用hexo和github搭建个人博客步骤</title>
+      <link>http://yoursite.com/2018/11/25/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%AD%A5%E9%AA%A4/</link>
+      <guid>http://yoursite.com/2018/11/25/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%AD%A5%E9%AA%A4/</guid>
+      <pubDate>Sun, 25 Nov 2018 07:03:40 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;1.基于node&lt;br&gt;2.npm包管理工具&lt;br&gt;3.&lt;code&gt;npm install -g hexo(hexo-cli)&lt;/code&gt;&lt;br&gt;4.下载的资源是国外的可能比较慢&lt;br&gt;5.淘宝镜像（代理的仓库）&lt;br&gt;6.&lt;code&gt;npm install -g hexo --registry=https://registry.npm.taobao.org&lt;/code&gt;&lt;br&gt;7.在一个空目录（hexo init）博客系统的初始化&lt;br&gt;8.hexo\source_posts md文档就是博客文档&lt;br&gt;9.如果要写一篇博客（新建文件  xxx.md）&lt;br&gt;10.把md文档转html文件（hexo g）&lt;br&gt;&lt;code&gt;hexo g&lt;/code&gt;   &lt;/p&gt;
+      
+      </description>
+      
+      <content:encoded><![CDATA[<p>1.基于node<br>2.npm包管理工具<br>3.<code>npm install -g hexo(hexo-cli)</code><br>4.下载的资源是国外的可能比较慢<br>5.淘宝镜像（代理的仓库）<br>6.<code>npm install -g hexo --registry=https://registry.npm.taobao.org</code><br>7.在一个空目录（hexo init）博客系统的初始化<br>8.hexo\source_posts md文档就是博客文档<br>9.如果要写一篇博客（新建文件  xxx.md）<br>10.把md文档转html文件（hexo g）<br><code>hexo g</code>   </p><a id="more"></a><p><strong><em>坑：</em></strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo not found in XXX</span><br><span class="line">ERROR Try running: &apos;npm install hexo --save</span><br></pre></td></tr></table></figure><p>解决方法：<br><em>1).</em>重新安装node_modules<br><code>npm install</code><br>​ <em>2).</em>node.js版本过低，更新版本（我就是这个原因）</p><p>11.在自己的服务器预览（hexo s） localhost:4000<br><code>hexo s</code><br>12.如果从新生成html文件可能会有缓存 （hexo clean,hexo g）<br>13.和github关联 推代码到github<br>14.和git关联 hexo-deploy-git 插件<br> <code>npm install hexo-deployer-git --save</code><br>15.和github关联需要配置文件<br>16.修改文件  _config.yml  在最下面<br>17.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type: git</span><br><span class="line">  repo: git@github.com:用户名/用户名.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p><p>18.需要在github配置仓库 名称（用户名.github.io）<br>19.把代码推到github (hexo d)<br><code>hexo d</code><br>20.只能预览代码 无法预览页面<br>21.配置当前仓库可以通过网络访问页面<br>22.在仓库的首页  settings—&gt;GitHub Pages–&gt;改选项 Source（none—master branch）<br>23.通过 用户名.github.io 访问你的博客</p>]]></content:encoded>
+      
+      <comments>http://yoursite.com/2018/11/25/%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%AD%A5%E9%AA%A4/#disqus_thread</comments>
+    </item>
+    
+  </channel>
+</rss>
