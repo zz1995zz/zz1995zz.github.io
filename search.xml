@@ -5,4 +5,172 @@
     <url>%2F2018%2F11%2F25%2F%E5%88%A9%E7%94%A8hexo%E5%92%8Cgithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%AD%A5%E9%AA%A4%2F</url>
     <content type="text"><![CDATA[1.基于node2.npm包管理工具3.npm install -g hexo(hexo-cli)4.下载的资源是国外的可能比较慢5.淘宝镜像（代理的仓库）6.npm install -g hexo --registry=https://registry.npm.taobao.org7.在一个空目录（hexo init）博客系统的初始化8.hexo\source_posts md文档就是博客文档9.如果要写一篇博客（新建文件 xxx.md）10.把md文档转html文件（hexo g）hexo g 坑： 12hexo not found in XXXERROR Try running: &apos;npm install hexo --save 解决方法：1).重新安装node_modulesnpm install​ 2).node.js版本过低，更新版本（我就是这个原因） 11.在自己的服务器预览（hexo s） localhost:4000hexo s12.如果从新生成html文件可能会有缓存 （hexo clean,hexo g）13.和github关联 推代码到github14.和git关联 hexo-deploy-git 插件 npm install hexo-deployer-git --save15.和github关联需要配置文件16.修改文件 _config.yml 在最下面17.123type: git repo: git@github.com:用户名/用户名.github.io.git branch: master 18.需要在github配置仓库 名称（用户名.github.io）19.把代码推到github (hexo d)hexo d20.只能预览代码 无法预览页面21.配置当前仓库可以通过网络访问页面22.在仓库的首页 settings—&gt;GitHub Pages–&gt;改选项 Source（none—master branch）23.通过 用户名.github.io 访问你的博客]]></content>
   </entry>
+  <entry>
+    <title><![CDATA[zepto中使用swipeLeft和swipeRight遇到的坑]]></title>
+    <url>%2F2018%2F11%2F15%2Fzepto%E4%B8%AD%E4%BD%BF%E7%94%A8swipeLeft%E5%92%8CswipeRight%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91%2F</url>
+    <content type="text"><![CDATA[zepto中使用swipeLeft和swipeRight遇到的坑 1234567891011// 手势事件 $banner.on(&apos;swipeLeft&apos;,function()&#123; //左滑 index++; animation(); &#125;); $banner.on(&apos;swipeRight&apos;,function()&#123; // 右滑 index--; animation(); &#125;); 在使用中根本不会触发左右滑动事件，后来在网上了解到可以在注册事件的元素的css中添加touch-action: none; 在测试之后确实可以滑动了，但同时又报了Cannot read property ‘trigger’ of undefined的错误。。。 最后直接下载了zepto.js的最新版，bug没有了。]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[BFC原理讲解]]></title>
+    <url>%2F2018%2F11%2F11%2FBFC%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[本文讲了BFC的概念是什么； BFC的约束规则；咋样才能触发生成新的BFC；BFC在布局中的应用：防止margin重叠(塌陷,以最大的为准)； 清除内部浮动；自适应两（多）栏布局。 1. BFC是什么？Block fomatting context = block-level box + Formatting Context Box:Box即盒子模型； block-level box即块级元素 display属性为block, list-item, table的元素，会生成block-level box；并且参与 block fomatting context ； inline-level box即行内元素 display 属性为 inline, inline-block, inline-table的元素，会生成inline-level box。并且参与 inline formatting context ； Formatting contextFormatting context是W3C CSS2.1规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系、相互作用。最常见的 Formatting context 有 Block fomatting context (简称BFC)和 Inline formatting context(简称IFC)。 CSS2.1 中只有BFC和IFC, CSS3中还增加了G（grid）FC和F(flex)FC。 BFC 定义BFC(Block formatting context)直译为”块级格式化上下文”。它是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。 2.BFC的生成上文提到BFC是一块渲染区域，那这块渲染区域到底在哪，它又是有多大，这些由生成BFC的元素决定，CSS2.1中规定满足下列CSS声明之一的元素便会生成BFC。 根元素 float的值不为none overflow的值不为visible display的值为inline-block、table-cell、table-caption display：table也认为可以生成BFC，其实这里的主要原因在于Table会默认生成一个匿名的table-cell，正是这个匿名的table-cell生成了BFC position的值为absolute或fixed 3. BFC的约束规则 内部的Box会在垂直方向上一个接一个的放置 垂直方向上的距离由margin决定。（完整的说法是：属于同一个BFC的两个相邻Box的margin会发生重叠（塌陷），与方向无关。） 每个元素的左外边距与包含块的左边界相接触（从左向右），即使浮动元素也是如此。（这说明BFC中子元素不会超出他的包含块，而position为absolute的元素可以超出他的包含块边界） BFC的区域不会与float的元素区域重叠 计算BFC的高度时，浮动子元素也参与计算 BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面元素，反之亦然看到以上的几条约束，想想我们学习css时的几条规则 Block元素会扩展到与父元素同宽，所以block元素会垂直排列 垂直方向上的两个相邻DIV的margin会重叠，而水平方向不会(此规则并不完全正确) 浮动元素会尽量接近往左上方（或右上方） 为父元素设置overflow：hidden或浮动父元素，则会包含浮动元素4. BFC在布局中的应用 4.1 防止margin重叠（塌陷）：两个相邻Box垂直方向margin重叠1234567891011121314&lt;style&gt; p &#123; color: #f55; background: #fcc; width: 200px; line-height: 100px; text-align:center; margin: 100px; &#125;&lt;/style&gt;&lt;body&gt; &lt;p&gt;Haha&lt;/p&gt; &lt;p&gt;Hehe&lt;/p&gt;&lt;/body&gt; 两个p之间的距离为100px，发送了margin重叠（塌陷），以最大的为准，如果第一个P的margin为80的话，两个P之间的距离还是100，以最大的为准。 根据BFC布局规则第二条： Box垂直方向的距离由margin决定。属于同一个BFC(上例中是body根元素的BFC)的两个相邻Box的margin会发生重叠 我们可以在p外面包裹一层容器，并触发该容器生成一个新BFC。那么两个P便不属于同一个BFC，就不会发生margin重叠了。 代码： 12345678910111213141516171819&lt;style&gt; .wrap &#123; overflow: hidden;// 新的BFC &#125; p &#123; color: #f55; background: #fcc; width: 200px; line-height: 100px; text-align:center; margin: 100px; &#125;&lt;/style&gt;&lt;body&gt; &lt;p&gt;Haha&lt;/p&gt; &lt;div class=&quot;wrap&quot;&gt; &lt;p&gt;Hehe&lt;/p&gt; &lt;/div&gt;&lt;/body&gt; 相邻Box水平方向margin重叠12345678910111213141516171819202122232425262728&lt;!doctype HTML&gt;&lt;html&gt;&lt;head&gt;&lt;style type=&quot;text/css&quot;&gt; #green &#123; margin:10px 10px 10px 10px &#125; #blue &#123; margin:10px 10px 10px 10px &#125; #red &#123; margin:10px 10px 10px 10px &#125; body &#123; writing-mode:tb-rl; &#125; &lt;/style&gt;&lt;/head&gt;&lt;body&gt; &lt;div id=&quot;green&quot; style=&quot;background:lightgreen;height:100px;width:100px;&quot;&gt;&lt;/div&gt;&lt;div id=&quot;blue&quot; style=&quot;background:lightblue;height:100px;width:100px;&quot;&gt;&lt;/div&gt;&lt;div id=&quot;red&quot; style=&quot;background:pink;height:100px;width:100px;&quot;&gt;&lt;/div&gt; &lt;/body&gt;&lt;/html&gt; 可以看到水平方向的margin发生了重叠。 我们可以给div加个 display:inline-block ，触每个div容器生成一个BFC。那么三个DIV便不属于同一个BFC（这个只body根元素形成的BFC），就不会发生margin重叠了。 嵌套元素的margin重叠12345678910111213141516171819202122232425262728293031323334353637383940414243&lt;!DOCTYPE html&gt;&lt;html&gt; &lt;head&gt; &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt; &lt;!--The viewport meta tag is used to improve the presentation and behavior of the samples on iOS devices--&gt; &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1, maximum-scale=1,user-scalable=no&quot;/&gt; &lt;title&gt;&lt;/title&gt; &lt;style&gt; html, body &#123; height: 100%; width: 100%; margin: 0; padding: 0; &#125; #map&#123; padding:0; &#125; .first&#123; margin:20px; background:lightgreen; width:100px; height:100px; &#125; ul&#123; /*display:inline-block;*/ margin:10px; background:lightblue; &#125; li&#123; margin:25px; &#125; &lt;/style&gt; &lt;/head&gt; &lt;body class=&quot;claro&quot;&gt; &lt;div class=&quot;first&quot;&gt;&lt;/div&gt; &lt;ul&gt; &lt;li&gt;1&lt;/li&gt; &lt;li&gt;2&lt;/li&gt; &lt;li&gt;3&lt;/li&gt; &lt;/ul&gt;&lt;/body&gt; &lt;/html&gt; 此时div与ul之间的垂直距离，取div、ul、li三者之间的最大外边距。 要阻止嵌套元素的margin重叠，只需让ul生成BFC即可（将上例中的注释去掉），这样div、ul、li之间便不会发生重叠现象。 而li位于同一BFC内所以仍然存在重叠现象。 给li设置line-block重新生成一个bfc就不存在重叠现象了。 需要注意的是： 如果为ul设置了border或padding，那元素的margin便会被包含在父元素的盒式模型内，不会与外部div重叠。 《CSS权威指南》中提到块级正常流元素的高度设置为auto，而且只有块级子元素，其默认高度将是从最高块级子元素的外边框边界到最低块级子元素外边框边界之间的距离。如果块级元素右上内边距或下内边距，或者有上边框或下边框，其高度是从其最高子元素的上外边距边界到其最低子元素的下外边距边界之间的距离。 4.2 清除内部浮动12345678910111213141516171819&lt;style&gt; .par &#123; border: 5px solid #fcc; width: 300px; &#125; .child &#123; border: 5px solid #f66; width:100px; height: 100px; float: left; &#125;&lt;/style&gt;&lt;body&gt; &lt;div class=&quot;par&quot;&gt; &lt;div class=&quot;child&quot;&gt;&lt;/div&gt; &lt;div class=&quot;child&quot;&gt;&lt;/div&gt; &lt;/div&gt;&lt;/body&gt; 页面： 根据BFC布局规则第六条： 计算BFC的高度时，浮动元素也参与计算 为达到清除内部浮动，我们可以触发par生成BFC，那么par在计算高度时，par内部的浮动元素child也会参与计算。 123.par &#123; overflow: hidden;&#125; 4.3 自适应多栏布局的4.3.1 自适应两栏布局12345678910111213141516171819202122&lt;style&gt; body &#123; width: 300px; position: relative; &#125; .aside &#123; width: 100px; height: 150px; float: left; background: #f66; &#125; .main &#123; height: 200px; background: #fcc; &#125;&lt;/style&gt;&lt;body&gt; &lt;div class=&quot;aside&quot;&gt;&lt;/div&gt; &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;&lt;/body&gt; 根据BFC布局规则第3条： 每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。 因此，虽然存在浮动的元素aslide，但main的左边依然会与包含块的左边相接触。 根据BFC布局规则第四条： BFC的区域不会与float box重叠。 我们可以通过通过触发main生成BFC， 来实现自适应两栏布局。 123.main &#123; overflow: hidden;&#125; 当触发main生成BFC后，这个新的BFC不会与浮动的aside重叠。因此会根据包含块的宽度，和aside的宽度，自动变窄。效果如下： 4.3.2 自适应两栏布局123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263&lt;!DOCTYPE html&gt;&lt;html&gt; &lt;head&gt; &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt; &lt;!--The viewport meta tag is used to improve the presentation and behavior of the samples on iOS devices--&gt; &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1, maximum-scale=1,user-scalable=no&quot;/&gt; &lt;title&gt;&lt;/title&gt; &lt;style&gt; html, body &#123; height: 100%; width: 100%; margin: 0; padding: 0; &#125; .left&#123; background:pink; float: left; width:180px; &#125; .center&#123; background:lightyellow; overflow:hidden; &#125; .right&#123; background: lightblue; width:180px; float:right; &#125; &lt;/style&gt; &lt;/head&gt; &lt;body class=&quot;claro&quot;&gt; &lt;div class=&quot;container&quot;&gt; &lt;div class=&quot;left&quot;&gt; &lt;pre&gt; .left&#123; background:pink; float: left; width:180px; &#125; &lt;/pre&gt; &lt;/div&gt; &lt;div class=&quot;right&quot;&gt; &lt;pre&gt; .right&#123; background:lightblue; width:180px; float:right; &#125; &lt;/pre&gt; &lt;/div&gt; &lt;div class=&quot;center&quot;&gt; &lt;pre&gt; .center&#123; background:lightyellow; overflow:hidden; height:116px; &#125; &lt;/pre&gt; &lt;/div&gt; &lt;/div&gt; &lt;/html&gt; 这种布局的特点在于左右两栏宽度固定，中间栏可以根据浏览器宽度自适应。 4. 总结其实以上的几个例子都体现了BFC布局规则第五条： BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。 因为BFC内部的元素和外部的元素绝对不会互相影响，因此， 当BFC外部存在浮动时，它不应该影响BFC内部Box的布局，BFC会通过变窄，而不与浮动有重叠。 同样的，当BFC内部有浮动时，为了不影响外部元素的布局，BFC计算高度时会包括浮动的高度。 避免margin重叠也是这样的一个道理。 5. 延申阅读 CSS清浮动处理（Clear与BFC） A new micro clearfix hack 清除浮动和BFC]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CSS3（常用）]]></title>
+    <url>%2F2018%2F11%2F02%2FCSS3(%E5%B8%B8%E7%94%A8)%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[H5新增（常用）]]></title>
+    <url>%2F2018%2F10%2F31%2FH5%E6%96%B0%E5%A2%9E(%E5%B8%B8%E7%94%A8)%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[js隐式转换问题]]></title>
+    <url>%2F2018%2F10%2F26%2Fjs%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[12345678//当下面按钮全选中时，上面按钮也选中var flag=true;$tbodyCheckboxs.each(function(i)&#123; if($tbodyCheckboxs.eq(i).prop(&apos;checked&apos;)!=&apos;checked&apos;)&#123; flag=false; &#125;&#125;) $(&apos;thead input&apos;).prop(&apos;checked&apos;,flag); 今天在项目里写复选框的全选功能时，遇到了一个坑，这个坑就是js的隐式转换，虽然知道这个东西，但是却记错了，搞了半天才发现原来是这么一个小错误。 问题：不管下面的复选框选没选中，$tbodyCheckboxs.eq(i).prop(‘checked’) != ‘checked’都返回true，导致flag都会变成false，从而$(‘thead input’)这个总的复选框永远不会被选中。 —————————— 此段废话——————————————- （首先清楚的是，表单元素的一些属性只有一个属性值，且值就是本身时，在用js或jq操作的时候，它的值是布尔值（获取的值是布尔值，设置值的时候是布尔值或者能转换成对应布尔值的其他类型的值）；所以在这里$tbodyCheckboxs.eq(i).prop(‘checked’)的值是true或false，本来这里就让$tbodyCheckboxs.eq(i).prop(‘checked’) !=true就没有任何问题，但我知道js在判断全等和全不等的时候会有类型转换，所以写了‘checked’,结果因为对相等操作符的类型转换规则记忆有误，导致错误，一直判断的是 布尔值 != ‘checked’。） 总的来说，在转换不同的数据类型时，相等和不相等操作符遵循以下基本规则： 1.如果有一个操作数是布尔值，则在比较相等性之前现将其转化成数值—-false为0，true为1； 2.如果一个操作数是字符串，一个是数值，在判断相等性之前，先把字符串转换为数值； 3.如果一个操作数是对象，另一个操作数不是，则调用对象的valueOf()方法，用得到的基本类型的值去比较 4.null和undefined相等，它俩在判断相等性时，不会类型转换； 5.NaN不和任何值相等； 6.两个都是对象，则判断是不是同一个对象。 总结这么多，一句话，为了避免错误，以后尽量用全等===和全不等!==]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[动态网站开发流程]]></title>
+    <url>%2F2018%2F10%2F23%2F%E5%8A%A8%E6%80%81%E7%BD%91%E7%AB%99%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[xml声明之前不能有空格空行]]></title>
+    <url>%2F2018%2F10%2F21%2Fxml%E5%A3%B0%E6%98%8E%E4%B9%8B%E5%89%8D%E4%B8%8D%E8%83%BD%E6%9C%89%E7%A9%BA%E6%A0%BC%E7%A9%BA%E8%A1%8C%2F</url>
+    <content type="text"><![CDATA[注意：XML 声明通常在 XML 文档的第一行出现。 XML 声明不是必选项，但是如果使用 XML 声明，必须在文档的第一行，前面不得有空格空行。 出现问题场景：用ajax请求服务端的xml数据 12345678910111213141516171819202122 &lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;title&gt;ajax请求xml数据&lt;/title&gt;&lt;/head&gt;&lt;body&gt; &lt;script&gt; var xhr=new XMLHttpRequest(); xhr.open(&apos;GET&apos;,&apos;data.php&apos;); xhr.send(); xhr.onreadystatechange=function()&#123; if(this.readyState!=4) return; // console.log(this.responseText); //this.responseXML专门获取服务端返回的xml数据，操作方式是通过dom的方式操作 //但是需要服务端的响应头中的Content-Type设置为application/xml console.log(this); &#125; &lt;/script&gt;&lt;/body&gt;&lt;/html&gt; 注意：下面的xml声明前有空行 1234567891011 &lt;?php //不管服务端返回的数据是哪种类型，都在content-type写清楚header(&apos;Content-Type: application/xml&apos;); ?&gt; &lt;?xml version=&quot;1.1&quot; encoding=&quot;utf-8&quot;?&gt;&lt;person&gt; &lt;student&gt;石羊&lt;/student&gt; &lt;age&gt;18&lt;/age&gt; &lt;gender&gt;男&lt;/gender&gt;&lt;/person&gt; 这时候输出的内容responseXML的值为null，出现了不是想要的结果！！！ 去掉xml声明前的空格后：出现了想要的结果。]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[value与innerHTML，innerText的区别]]></title>
+    <url>%2F2018%2F10%2F01%2Fvalue%E4%B8%8EinnerHTML%EF%BC%8CinnerText%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[value与innerHTML，innerText的区别： innerHTML与innerText的区别我就不讲了，主要讲value与这两者的区别！ 1.value是表单元素的特有属性，非表单元素没有value属性，如div，span等； 2.value在不同表单元素里有不同的意义，如button为按钮中的文本，input（text）为默认文本，textarea为默认文本。。。 所以操作表单元素的文本内容用value；而innerHTML与innerText操作非表单元素的内容或文本内容。 3.举例说明： 12 &lt;input type=&quot;text&quot; value=&quot;123456&quot; id=&quot;userName&quot;/&gt;&lt;br/&gt;&lt;textarea name=&quot;&quot; id=&quot;tt&quot; cols=&quot;30&quot; rows=&quot;10&quot; &gt;123&lt;/textarea&gt;&lt;br/&gt; console.log(document.getElementById(“userName”).value); ——–”123456” console.log(document.getElementById(“tt”).value); ——–”123” 所以获取表单元素的内容时用value属性。]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[检测数据类型typeof的一个易错点]]></title>
+    <url>%2F2018%2F09%2F25%2F%E6%A3%80%E6%B5%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Btypeof%E7%9A%84%E4%B8%80%E4%B8%AA%E6%98%93%E9%94%99%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[切记 ！！！typeof返回的值是一个字符串！！！ 出错的代码：： 12345678910111213141516171819202122232425262728293031323334 &lt;body&gt;&lt;ul id=&quot;uu&quot;&gt; &lt;li&gt;第一个&lt;/li&gt; &lt;li&gt;第二个&lt;/li&gt; &lt;li&gt;第三个&lt;/li&gt; &lt;li&gt;第四个&lt;/li&gt; &lt;li&gt;第五个&lt;/li&gt;&lt;/ul&gt;&lt;script src=&quot;common.js&quot;&gt;&lt;/script&gt;&lt;script&gt; //IE8获取节点的代码变成了获取元素，获取元素的返回undefined 所以要有兼容代码 //以获取第一和最后一个子元素为例 //获取任意父元素的第一个子元素 function getFirstElementChildByParent(element) &#123; if (typeof element.firstElementChild != undefined) &#123; //切记typeof返回的是字符串，所以我之前undefined没加引号，一直有问题，因为&quot;undefined&quot;！=undefined肯定是正确的 return element.firstElementChild; &#125; else &#123; // return element.firstChild; //本来针对ie8这样就够了，但为了更严谨，比如有浏览器不识别firstElementChild，识别firstChild，但返回的又确实是第一个子节点 var node = element.firstChild; while (node &amp;&amp; node.nodeType != 1) &#123; node = node.nextSibling; &#125; return node; &#125; &#125; console.log(getFirstElementChildByParent(my$(&quot;uu&quot;)));&lt;/script&gt; 此段代码为获取子元素的兼容代码，本来判断一个属性是否在浏览器中支持，是看它的类型是否是undefined，所以我写了 typeof element.firstElementChild != undefined，但发现不支持的ie8也返回了true，难道undefined !=undefined不是false吗？？然后去找了半天，也没解决，结果最后才发现typeof返回的数据类型的值是一个字符串啊！！此时”undefined”!=undefined肯定一直是true，这才恍然大悟。 所以正确的代码应为：typeof element.firstElementChild != “undefined”]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JS中for循环之斐波拉切数列-兔子问题]]></title>
+    <url>%2F2018%2F09%2F16%2FJS%E4%B8%ADfor%E5%BE%AA%E7%8E%AF%E4%B9%8B%E6%96%90%E6%B3%A2%E6%8B%89%E5%88%87%E6%95%B0%E5%88%97-%E5%85%94%E5%AD%90%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[兔子问题： 有个人想知道，一年之内一对兔子能繁殖多少对？于是就筑了一道围墙把一对兔子关在里面。已知一对兔子每个月可以生一对小兔子，而一对兔子从出生后第3个月起每月生一对小兔子。假如一年内没有发生死亡现象，那么，一对兔子一年内（12个月）能繁殖成多少对？（兔子的规律为数列，1，1，2，3，5，8，13，21） 其实这就是斐波拉切数列：一个数列当前项等于前两项之和。 所以，要求第12个月的值，也就是求数列第12项的值；解决思路： 1.定义三个变量，一个变量是数列第一项值，一个变量是第二项值，一个变量是中间变量； 2.为了依次得到之后的值，也就是最开始的第二项值变成了之后的第一项值（需要把之前的第二项值存储在中间变量中），之后的第二项值变成了之前两项值的和。 js代码如下： 1234567891011121314//1.定义三个变量，然后两个初始化值。第三个作为存储使用 var temp; var num1 = 1; var num2 = 1; //2.先把之前的第二个变量存储在中间变量，然后把之后的第二个变量赋值为之前两个变量的和 for(var i=1;i&lt;=10;i++)&#123; temp = num2; num2 = num1 + num2; //3.把存储的中间变量赋值给之后的第一个变量。 num1 = temp; //4.执行10次。（因为前两项不需要计算，所以只需要执行10次） &#125; console.log(num2);]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[float与position同时使用]]></title>
+    <url>%2F2018%2F09%2F01%2Ffloat%E4%B8%8Eposition%E5%90%8C%E6%97%B6%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[float浮动与position同时使用并不会冲突，前者是使元素脱离标准流，浮动在文档流上；而后者是使元素相对自身的移动定位，虽浮动但占据原有位置。当两者同时使用时，不会发生冲突，反而使元素同时具有两者特性，即既可以相对自身移动定位，又可以浮动不占位置。 1234567891011121314151617181920212223242526272829303132 &lt;style&gt; * &#123; margin: 0; padding: 0; &#125; .nav &#123; margin: 100px; height: 200px; width: 300px; border: 1px solid red; &#125; .banner &#123; float: left; height: 50px; width: 50px; position: relative; background-color: red; &#125; .header &#123; float: left; height: 50px; width: 50px; background-color: yellow; &#125; &lt;/style&gt;&lt;/head&gt;&lt;body&gt; &lt;div class=&quot;nav&quot;&gt; &lt;div class=&quot;banner&quot;&gt;&lt;/div&gt; &lt;div class=&quot;header&quot;&gt;&lt;/div&gt; &lt;/div&gt;&lt;/body&gt; 如代码所示，此时的效果为： 当设置边偏移时，效果如下： 12345678.banner &#123; float: left; height: 50px; width: 50px; position: relative; left: 100px; background-color: red; &#125; ？？？疑问，虽然边偏移有效，但为什么黄色的盒子没有因为float：left到最左边呢？？ 因为relative是要保留原本的位置的啊！！！ 为了搞清楚原因，做以下测试： 123456.header &#123; float: right; height: 50px; width: 50px; background-color: yellow; &#125; 把黄色的float改成right，效果如下，其确实浮到了最右边： 再测试，这次修改结构，把黄色的div改到红色的div前面(或者删掉黄色盒子的浮动）(再或者给其加一个定位absolute），效果如下，黄色的也浮到了最左边： 1234&lt;div class=&quot;nav&quot;&gt; &lt;div class=&quot;header&quot;&gt;&lt;/div&gt; &lt;div class=&quot;banner&quot;&gt;&lt;/div&gt;&lt;/div&gt;]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[如何通过git把本地项目传到github上]]></title>
+    <url>%2F2018%2F06%2F08%2F%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87git%E6%8A%8A%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E4%BC%A0%E5%88%B0github%E4%B8%8A%2F</url>
+    <content type="text"><![CDATA[第一步：打开git.bash.exe，输入：cd 文件夹 第二步：git init（在当前目录中生成本地的git管理文件夹） 第三步：git add .（这个是将项目上所有的文件添加到仓库中的意思，如果想添加某个特定的文件，只需把.换 成这个特定的文件名即可） 第四步：git commit -m “first commit”（对本次提交的注释，first commit可以换成你想写的） 第五步：git remote add origin github的项目地址（ 将本地的仓库关联到github上） 第六步：git push -u origin master（把代码上传到github仓库） 第七步：输入账号和密码（会有弹出框提示） 注意：在第七步可能会出现的问题：! [rejected] master -&gt; master (non-fast-forward) 解决方法：git pull –rebase origin master之后再进行第六步！！！]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Array.prototype.slice.call()方法详解]]></title>
+    <url>%2F2018%2F04%2F21%2FArray.prototype.slice.call()%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[转载自：https://www.cnblogs.com/dingxiaoyue/p/4948166.html]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[js中apply和call的用法]]></title>
+    <url>%2F2018%2F04%2F16%2Fjs%E4%B8%ADapply%E5%92%8Ccall%E7%9A%84%E7%94%A8%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[每个函数都包含两个非继承而来的方法：apply()和call()。这两个方法的用途都是在特定的作用域中调用函数，实际上等于设置函数体内this对象的值。首先，apply()方法接收两个参数：一个是在其中运行函数的作用域，另一个参数数组（可以是Array的实例，也可以是arguments对象）。 例如： 1234567891011function sum(num1,num2)&#123; return num1+num2;&#125;function callSum1(num1,num2)&#123; return sum.apply(this,arguments);//传入arguments对象&#125;function callSum2(num1,num2)&#123; return sum.apply(this,[num1,num2]);//传入数组&#125;alert(callSum1(10,10));//20alert(callSum2(10,10));//20 call()方法与apply()方法的作用相同，区别在于接收参数方式不同。对于call()方法而言，第一个参数与apply()相同，第二个参数必须是直接传递给函数（即传递给函数的参数必须逐个列举出来）。 例如： 1234567function sum(num1,num2)&#123; return num1+num2;&#125;function callSum(num1,num2)&#123; return sum.call(this,num1,num2);&#125;alert(callSum(10,10));//20 明天再写]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[原型的动态性]]></title>
+    <url>%2F2018%2F04%2F16%2F%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%8A%A8%E6%80%81%E6%80%A7%2F</url>
+    <content type="text"><![CDATA[对原型对象所做的任何修改都能立即从实例上反映出来——即使是先创建了实例后修改原型也照样如此。 1234567891011121314151617 function Person()&#123;&#125;Person.prototype=&#123; name:&quot;Nicholas&quot;, age:29, job:&quot;Software Engineer&quot;, sayName:function()&#123; alert(this.name); &#125;&#125;; var friend=new Person(); //原型的动态性 Person.prototype.sayHi=function()&#123; alert(&quot;hi&quot;); &#125; friend.sayHi();//&quot;hi&quot; 如代码所示，即使是在实例之后修改原型，friends仍然可以访问到该属性。实例与原型之间的连接只不过是一个指针，而非一个副本。尽管可以随时为原型添加属性和方法，但如果重写原型，那么情况会有所不同。重写原型对象切断了现有原型与任何之前已经存在的对象实例的联系；它们引用的仍然是最初的原型。 123456789101112 function Person()&#123;&#125; var friend=new Person(); Person.prototype=&#123; name:&quot;Greg&quot;, age:29, job:&quot;Software Engineer&quot;, sayName:function()&#123; alert(this.name); &#125;&#125;;friend.sayName();//error 此时返回错误，因为此时原来的原型里面没有sayName属性。同理,下面的例子讲返回“Nicholas”。 12345678910111213141516171819202122 function Person()&#123;&#125;Person.prototype=&#123; name:&quot;Nicholas&quot;, age:29, job:&quot;Software Engineer&quot;, sayName:function()&#123; alert(this.name); &#125;&#125;; var friend=new Person(); Person.prototype=&#123; name:&quot;Greg&quot;, age:29, job:&quot;Software Engineer&quot;, sayName:function()&#123; alert(this.name); &#125;&#125;;friend.sayName();//Nicholas 小结：可以修改原型属性和方法，无论是在对象实例的前后。但不可以重写原型，此时对象实例仍然指针指向原来的原型，即创建的原型一定要在对象实例之前才会起作用。如果创建的两个原型都在对象实例之前，后面的一个会起作用。 1234567891011121314151617181920212223 function Person()&#123;&#125; Person.prototype=&#123; name:&quot;Nicholas&quot;, age:29, job:&quot;Software Engineer&quot;, sayName:function()&#123; alert(this.name); &#125;&#125;;Person.prototype=&#123; name:&quot;Greg&quot;, age:29, job:&quot;Software Engineer&quot;, sayName:function()&#123; alert(this.name); &#125;&#125;; var friend=new Person(); friend.sayName();//Greg 有问题有想法欢迎交流，共同进步！]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[javascript中数组的五种迭代方法]]></title>
+    <url>%2F2018%2F04%2F16%2Fjavascript%E4%B8%AD%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%94%E7%A7%8D%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[ES5中为数组定义了5个迭代方法。每个方法接收两个参数：要在每一项上运行的函数和运行该函数的作用域(可选)——影响this的值。传入这些方法中的函数会接收三个参数：数组项的值、该项在数组中的位置、数组对象本身。 5个迭代方法（都是对数组中的每一项运行给定函数）： 1.every()：每一项都返回true，则返回true。 2.filter()：返回true的项组成的数组。 3.forEach()：没有返回值。 4.map()：返回调用函数的结果组成的数组。 5.some()：任一项返回true，则返回true。 every()和some()具有相似性，先对比两者： 1var numbers=[1,2,3,4,5,4,3,2,1]; 1234567891011//every()var everyResult =numbers.every(function(item,index,array)&#123; return (item&gt;2);&#125;);alert(everyResult);//false//some()var someResult=numbers.some(function(item,index,array)&#123; return (item&gt;2);&#125;);alert(someResult);//true 然后再看filter()： 123456//filtervar numbers=[1,2,3,4,5,4,3,2,1];var filterResult=numbers.filter(function(item,index,array)&#123; return (item&gt;2);&#125;);alert(filterResult);//[3,4,5,4,3] map()： 123456//mapvar numbers=[1,2,3,4,5,4,3,2,1];var mapResult=numbers.map(function(item,index,array)&#123; return item*2;&#125;);alert(mapResult);//[2,4,6,8,10,8,6,4,2] 最后来看forEach()，本质上与使用for循环迭代数组一样： 12345//forEachvar numbers=[1,2,3,4,5,4,3,2,1];numbers.forEach(function(item,index,array)&#123; //执行某些操作&#125;); 有问题有想法欢迎交流，共同进步！]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[正则表达式中字符串模式匹配方法exec和match的区别]]></title>
+    <url>%2F2018%2F04%2F09%2F%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E6%96%B9%E6%B3%95exec%E5%92%8Cmatch%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[js正则表达式中字符串模式匹配方法exec()和match()的有相近的作用,但也存在一些需要注意的区别。 第一点！！！这是没有设置全局标志g的情况：exec专门为捕获组而设计，可接受一个参数，即要应用模式的字符串，然后返回一个数组（没有捕获组时，数组只包含一项，即第一个匹配项信息；有捕获组时，其他项是模式中的捕获组匹配的字符串）。match也只接受一个参数，即一个正则表达式或regExp对象，返回的是一个数组，与exec相同。 1234567891011121314var text=&quot;cat, bat, sat, fat&quot;;var pattern=/.at/;var matches=text.match(pattern);var matches1=pattern.exec(text);console.log(matches);console.log(matches.index);console.log(matches[0]); console.log(matches1);console.log(matches1.index);console.log(matches1[0]);console.log(pattern.lastIndex) 结果如下： 1234567891011121314var text=&quot;cat, bat, sat, fat&quot;;var pattern=/.(a)t/;var matches=text.match(pattern);var matches1=pattern.exec(text);console.log(matches);console.log(matches.index);console.log(matches[0]); console.log(matches1);console.log(matches1.index);console.log(matches1[0]); console.log(pattern.lastIndex); 结果如下： 第二点！！！设置全局标志g的情况：match返回的是一个包含所有匹配项的数组，所以index返回undefined（因为index是索引位置，match匹配了不止一个，所以返回不了具体值，只能返回undefined）；exec返回的是每次匹配的项（匹配第一次返回第一次匹配的值cat，第二次返回bat，依次返回）。当有捕获组时，情况不同！match不管捕获组，依然只返回匹配的所有项数组，exec会正常返回其他项是捕获组字符串的数组。 1234567891011121314var text=&quot;cat, bat, sat, fat&quot;;var pattern=/.at/g;var matches=text.match(pattern);var matches1=pattern.exec(text);console.log(matches);console.log(matches.index);//0console.log(matches[0]);//&quot;cat&quot; console.log(matches1);console.log(matches1.index);console.log(matches1[0]); console.log(pattern.lastIndex); 结果如下： 1234567891011121314var text=&quot;cat, bat, sat, fat&quot;;var pattern=/.(a)t/g;var matches=text.match(pattern);var matches1=pattern.exec(text);console.log(matches);console.log(matches.index);//0console.log(matches[0]);//&quot;cat&quot; console.log(matches1);console.log(matches1.index);console.log(matches1[0]); console.log(pattern.lastIndex); 结果如下: 有问题有想法欢迎交流，共同进步！]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[javascript中关于事件句柄EventListener的疑问记录]]></title>
+    <url>%2F2018%2F03%2F24%2Fjavascript%E4%B8%AD%E5%85%B3%E4%BA%8E%E4%BA%8B%E4%BB%B6%E5%8F%A5%E6%9F%84EventListener%E7%9A%84%E7%96%91%E9%97%AE%E8%AE%B0%E5%BD%95%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;title&gt;Document&lt;/title&gt;&lt;/head&gt;&lt;body&gt; &lt;p id=&quot;pid&quot;&gt;Hello&lt;/p&gt; &lt;button id=&quot;btn&quot;&gt;按钮&lt;/button&gt; &lt;script&gt; var x=document.getElementById(&quot;btn&quot;); x.addEventListener(&quot;click&quot;,hello);//句柄 x.addEventListener(&quot;click&quot;,world); x.removeEventListener(&quot;click&quot;,hello); function hello()&#123; alert(&quot;Hello&quot;); &#125; function world()&#123; alert(&quot;world&quot;); &#125; &lt;/script&gt;&lt;/body&gt;&lt;/html&gt; 情况1：123x.addEventListener(&quot;click&quot;,hello);//句柄x.addEventListener(&quot;click&quot;,world);//x.removeEventListener(&quot;click&quot;,hello); 在视频教学中，说此处的函数调用不用加()，此时运行的结果是： 点击按钮，会弹出消息框“hello”,点击确定后，会再弹出对话框”world”。 情况2：123x.addEventListener(&quot;click&quot;,hello());//句柄x.addEventListener(&quot;click&quot;,world());//x.removeEventListener(&quot;click&quot;,hello); 添加()后，此时运行结果是：点击按钮没有反应，然后点击刷新，会先弹出消息框“hello”,点击确定后，会再弹出对话框”world”。 情况3：123x.addEventListener(&quot;click&quot;,hello);//句柄x.addEventListener(&quot;click&quot;,world());//x.removeEventListener(&quot;click&quot;,hello); 123x.addEventListener(&quot;click&quot;,hello());//句柄x.addEventListener(&quot;click&quot;,world);//x.removeEventListener(&quot;click&quot;,hello); 如果任意一个加()，一个不加(),那么点击按钮会弹出不加()的那个对应的消息框，点击刷新会出现加()括号的那个对应的消息框。 情况4：123x.addEventListener(&quot;click&quot;,hello);//句柄//x.addEventListener(&quot;click&quot;,world);x.removeEventListener(&quot;click&quot;,hello); 在视频教学中不加()，按按钮没有任何反应，事件句柄被删除。 情况5：123x.addEventListener(&quot;click&quot;,hello());//句柄//x.addEventListener(&quot;click&quot;,world);x.removeEventListener(&quot;click&quot;,hello()); 两个都加()，按钮没有反应，刷新出现两次”hello”对话框。 情况6：123x.addEventListener(&quot;click&quot;,hello);//句柄//x.addEventListener(&quot;click&quot;,world);x.removeEventListener(&quot;click&quot;,hello()); 123x.addEventListener(&quot;click&quot;,hello());//句柄//x.addEventListener(&quot;click&quot;,world);x.removeEventListener(&quot;click&quot;,hello); 如果其中一个不加，那么结果如下： 当第一个不加时，点击按钮和刷新各会弹出一个消息框；当第二个不加时，按钮没反应，刷新出现一个消息框。 分了六种情况，搞得自己都晕头晕脑的，暂时还未明白其中道理，等我了解清楚后，再来此处解答！ 小哥哥我终于搞明白了！！！ JS中函数名后面的括号加与不加的区别首先我们要明白一个概念：JavaScript 的函数是一等公民，可以作为参数传入别的函数，也可以作为一个函数的返回值，也可以被重新赋值。也就是说和变量一样。 举个例子： 123456789function test(str) &#123; str+=1; return str; &#125; var demo1=test(1); console.log(demo1);//2 返回的是执行函数得到的值 var demo2=test; console.log(demo2);//function test() 返回的是函数体本身 不加括号的时候，是表示这个函数本体，也是函数的指针，当加括号的时候，就等于引用该函数，直接得到该函数的返回值。 所以对于我们这里的情况，就很好解释了， addEventListener （参数1，参数2）；function函数在这里是作为参数导入，应该用函数体，所以不加括号，所以没加括号的时候按钮正常运行；如果加了括号等于这里导入的参数是function函数的返回值，那么调用的结果就是undefined。 所以当我们点击刷新时，加括号的函数就直接被执行（ps：js中可以执行一个语句中的一部分）。 更详细的解释，请看：https://www.zhihu.com/question/31044040（我也是从知乎大神处看的，嘻嘻）。 有问题有想法欢迎交流，共同进步！]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[javascript中for循环和标签元素赋值问题]]></title>
+    <url>%2F2018%2F03%2F20%2Fjavascript%E4%B8%ADfor%E5%BE%AA%E7%8E%AF%E5%92%8C%E6%A0%87%E7%AD%BE%E5%85%83%E7%B4%A0%E8%B5%8B%E5%80%BC%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[12345678910111213141516171819&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;p&gt;点击下面的按钮，将代码块循环五次：&lt;/p&gt;&lt;button onclick=&quot;myFunction()&quot;&gt;点击这里&lt;/button&gt;&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;&lt;script&gt;function myFunction()&#123;var x=&quot;&quot;;for (var i=0;i&lt;5;i++) &#123; x=x + &quot;The number is &quot; + i + &quot;&lt;br&gt;&quot;;document.getElementById(&quot;demo&quot;).innerHTML=x; &#125;&#125;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt; 12345678910111213141516171819&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;p&gt;点击下面的按钮，将代码块循环五次：&lt;/p&gt;&lt;button onclick=&quot;myFunction()&quot;&gt;点击这里&lt;/button&gt;&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;&lt;script&gt;function myFunction()&#123;var x=&quot;&quot;;for (var i=0;i&lt;5;i++) &#123; x=x + &quot;The number is &quot; + i + &quot;&lt;br&gt;&quot;; &#125;document.getElementById(&quot;demo&quot;).innerHTML=x;&#125; &lt;/script&gt;&lt;/body&gt;&lt;/html&gt; 上面两段代码是来自w3school中的一个关于for循环和标签元素赋值的问题的例子，我是之前一直纠结于将document.getElementById(“demo”).innerHTML=x;放在for循环内外结果为什么一样? 放在外边的情况很好理解，无非是p标签输出了循环到最后的x的结果，即： The number is 0The number is 1The number is 2The number is 3The number is 4 而放在里面的情况，我之前一直认为是每循环一次p标签输出一次x的结果，即： The number is 0The number is 0The number is 1The number is 0The number is 1The number is 2The number is 0The number is 1The number is 2The number is 3The number is 0The number is 1The number is 2The number is 3The number is 4 但这样的想法是错误的，因为p标签是闪现了5次输出的结果，最后显示的是最终输出的x结果，而不是把每次的值都显示出来，即： The number is 0The number is 1The number is 2The number is 3The number is 4 这些问题都是一些很细枝末节的东西，希望能帮和我有相同困惑的小伙伴拨开迷雾，共勉！ 有问题有想法欢迎交流，共同进步！]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[javascript中对时间的表达]]></title>
+    <url>%2F2018%2F03%2F19%2Fjavascript%E4%B8%AD%E5%AF%B9%E6%97%B6%E9%97%B4%E7%9A%84%E8%A1%A8%E8%BE%BE%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617var myDate = new Date();myDate.getYear(); //获取当前年份(2位)myDate.getFullYear(); //获取完整的年份(4位,1970-????)myDate.getMonth(); //获取当前月份(0-11,0代表1月) myDate.getMonth()+1myDate.getDate(); //获取当前日(1-31)myDate.getFullYear()+&apos;年&apos;+(myDate.getMonth()+1)+&apos;月&apos;+myDate.getDate()+&apos;日&apos;; //&quot;2015年11月8日&quot;myDate.getDay(); //获取当前星期X(0-6,0代表星期天)myDate.getTime(); //获取当前时间(从1970.1.1开始的毫秒数) 时间戳myDate.getHours(); //获取当前小时数(0-23)myDate.getMinutes(); //获取当前分钟数(0-59)myDate.getSeconds(); //获取当前秒数(0-59)myDate.getMilliseconds(); //获取当前毫秒数(0-999)myDate.toLocaleDateString(); //获取当前日期 &quot;2015/10/9&quot;var mytime=myDate.toLocaleTimeString(); //获取当前时间 &quot;下午4:15:47&quot;myDate.toLocaleString( ); //获取日期与时间 &quot;2015/10/9 下午4:15:47&quot; 前面的资料从网上找来的（https://www.cnblogs.com/xiabingbing/p/4980301.html），总的来说就是：new Date()是获取当前的时间，包括所有的信息，然后new Date().xxx是获取我们所需的信息，例如星期几，小时，分钟等。 有问题有想法欢迎交流，共同进步！]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[正式开始学习javascript!!!]]></title>
+    <url>%2F2018%2F03%2F19%2F%E6%AD%A3%E5%BC%8F%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0javascript!!!%2F</url>
+    <content type="text"><![CDATA[今天去图书馆借了javascript语言精粹，也从当当上买了javascript高级程序设计和你所不知道的javascript这两本书，配合着W3C和慕课网的视频开始学习了，希望我不是仅仅打了鸡血！加油！把对前端的兴趣一直保持下去。]]></content>
+      <tags>
+        <tag>CSDN迁移</tag>
+      </tags>
+  </entry>
 </search>

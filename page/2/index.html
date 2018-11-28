@@ -92,7 +92,7 @@
 <meta name="description" content="一直在路上">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ZZ的个人博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="ZZ的个人博客">
 <meta property="og:description" content="一直在路上">
 <meta property="og:locale" content="zh-Hans">
@@ -128,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/page/2/">
 
 
 
@@ -294,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/利用hexo和github搭建个人博客步骤/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/16/JS中for循环之斐波拉切数列-兔子问题/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zz1995">
@@ -313,7 +313,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/25/利用hexo和github搭建个人博客步骤/" itemprop="url">利用hexo和github搭建个人博客步骤</a></h1>
+                <a class="post-title-link" href="/2018/09/16/JS中for循环之斐波拉切数列-兔子问题/" itemprop="url">JS中for循环之斐波拉切数列-兔子问题</a></h1>
         
 
         <div class="post-meta">
@@ -325,8 +325,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T15:03:40+08:00">
-                2018-11-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-16T20:14:59+08:00">
+                2018-09-16
               </time>
             
 
@@ -357,7 +357,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  334
+                  424
                 </span>
               
 
@@ -395,10 +395,171 @@
 
       
         
-          <p>1.基于node<br>2.npm包管理工具<br>3.<code>npm install -g hexo(hexo-cli)</code><br>4.下载的资源是国外的可能比较慢<br>5.淘宝镜像（代理的仓库）<br>6.<code>npm install -g hexo --registry=https://registry.npm.taobao.org</code><br>7.在一个空目录（hexo init）博客系统的初始化<br>8.hexo\source_posts md文档就是博客文档<br>9.如果要写一篇博客（新建文件  xxx.md）<br>10.把md文档转html文件（hexo g）<br><code>hexo g</code>   </p>
+          
+            <p>  兔子问题：</p>
+<p> 有个人想知道，一年之内一对兔子能繁殖多少对？于是就筑了一道围墙把一对兔子关在里面。已知一对兔子每个月可以生一对小兔子，而一对兔子从出生后第3个月起每月生一对小兔子。假如一年内没有发生死亡现象，那么，一对兔子一年内（12个月）能繁殖成多少对？（兔子的规律为数列，1，1，2，3，5，8，13，21）</p>
+<p> 其实这就是斐波拉切数列：一个数列当前项等于前两项之和。</p>
+<p> 所以，要求第12个月的值，也就是求数列第12项的值；解决思路：</p>
+<p> 1.定义三个变量，一个变量是数列第一项值，一个变量是第二项值，一个变量是中间变量；</p>
+<p> 2.为了依次得到之后的值，也就是最开始的第二项值变成了之后的第一项值（需要把之前的第二项值存储在中间变量中），之后的第二项值变成了之前两项值的和。</p>
+<p> js代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//1.定义三个变量，然后两个初始化值。第三个作为存储使用</span><br><span class="line">   var temp;</span><br><span class="line">   var num1 = 1;</span><br><span class="line">   var num2 = 1;</span><br><span class="line">   //2.先把之前的第二个变量存储在中间变量，然后把之后的第二个变量赋值为之前两个变量的和</span><br><span class="line">   for(var i=1;i&lt;=10;i++)&#123;</span><br><span class="line">       temp = num2;</span><br><span class="line">       num2 = num1 + num2;</span><br><span class="line">       //3.把存储的中间变量赋值给之后的第一个变量。</span><br><span class="line">       num1 = temp;</span><br><span class="line">       //4.执行10次。（因为前两项不需要计算，所以只需要执行10次）</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  console.log(num2);</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/01/float与position同时使用/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zz1995">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZ的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/01/float与position同时使用/" itemprop="url">float与position同时使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-01T17:06:08+08:00">
+                2018-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  411
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>  float浮动与position同时使用并不会冲突，前者是使元素脱离标准流，浮动在文档流上；而后者是使元素相对自身的移动定位，虽浮动但占据原有位置。当两者同时使用时，不会发生冲突，反而使元素同时具有两者特性，即既可以相对自身移动定位，又可以浮动不占位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"> &lt;style&gt;</span><br><span class="line">	    * &#123;</span><br><span class="line">	    	margin: 0;</span><br><span class="line">	    	padding: 0;</span><br><span class="line">	    &#125;</span><br><span class="line">		.nav &#123;</span><br><span class="line">			margin: 100px;</span><br><span class="line">			height: 200px;</span><br><span class="line">			width: 300px;</span><br><span class="line">			border: 1px solid red;</span><br><span class="line">		&#125;</span><br><span class="line">		.banner &#123;</span><br><span class="line">			float: left;</span><br><span class="line">			height: 50px;</span><br><span class="line">			width: 50px;</span><br><span class="line">			position: relative;</span><br><span class="line">			background-color: red;</span><br><span class="line">		&#125;</span><br><span class="line">		.header &#123;</span><br><span class="line">			float: left;</span><br><span class="line">			height: 50px;</span><br><span class="line">			width: 50px;</span><br><span class="line">			background-color: yellow;</span><br><span class="line">		&#125;</span><br><span class="line">	&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;div class=&quot;nav&quot;&gt;</span><br><span class="line">		&lt;div class=&quot;banner&quot;&gt;&lt;/div&gt;</span><br><span class="line">		&lt;div class=&quot;header&quot;&gt;&lt;/div&gt;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p> 如代码所示，此时的效果为：</p>
+<p> <img src="https://img-blog.csdn.net/20180901162516580?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI3MzQ2MDc1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/11/25/利用hexo和github搭建个人博客步骤/#more" rel="contents">
+            <a class="btn" href="/2018/09/01/float与position同时使用/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -449,7 +610,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/15/zepto中使用swipeLeft和swipeRight遇到的坑/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/08/如何通过git把本地项目传到github上/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zz1995">
@@ -468,7 +629,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/15/zepto中使用swipeLeft和swipeRight遇到的坑/" itemprop="url">zepto中使用swipeLeft和swipeRight遇到的坑</a></h1>
+                <a class="post-title-link" href="/2018/06/08/如何通过git把本地项目传到github上/" itemprop="url">如何通过git把本地项目传到github上</a></h1>
         
 
         <div class="post-meta">
@@ -480,8 +641,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-15T21:53:30+08:00">
-                2018-11-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-08T12:05:28+08:00">
+                2018-06-08
               </time>
             
 
@@ -512,7 +673,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  123
+                  211
                 </span>
               
 
@@ -551,10 +712,16 @@
       
         
           
-            <p>  zepto中使用swipeLeft和swipeRight遇到的坑</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//    手势事件</span><br><span class="line">   $banner.on(&apos;swipeLeft&apos;,function()&#123;</span><br><span class="line">       //左滑</span><br><span class="line">       index++;</span><br><span class="line">       animation();</span><br><span class="line">   &#125;);</span><br><span class="line">   $banner.on(&apos;swipeRight&apos;,function()&#123;</span><br><span class="line">       // 右滑</span><br><span class="line">       index--;</span><br><span class="line">       animation();</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
-<p> 在使用中根本不会触发左右滑动事件，后来在网上了解到可以在注册事件的元素的css中添加touch-action: none; 在测试之后确实可以滑动了，但同时又报了Cannot read property ‘trigger’ of undefined的错误。。。</p>
-<p> 最后直接下载了zepto.js的最新版，bug没有了。</p>
+            <p>  第一步：打开git.bash.exe，输入：cd 文件夹</p>
+<p>第二步：git init（在当前目录中生成本地的git管理文件夹）</p>
+<p>第三步：git add .（这个是将项目上所有的文件添加到仓库中的意思，如果想添加某个特定的文件，只需把.换</p>
+<p>成这个特定的文件名即可）</p>
+<p>第四步：git commit -m “first commit”（对本次提交的注释，first commit可以换成你想写的）</p>
+<p>第五步：git remote add origin github的项目地址（ 将本地的仓库关联到github上）</p>
+<p>第六步：git push -u origin master（把代码上传到github仓库）</p>
+<p>第七步：输入账号和密码（会有弹出框提示）</p>
+<p>注意：在第七步可能会出现的问题：! [rejected] master -&gt; master (non-fast-forward)</p>
+<p>解决方法：git pull –rebase origin master之后再进行第六步！！！</p>
 
           
         
@@ -603,7 +770,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/11/BFC原理讲解/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/Array.prototype.slice.call()方法详解/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zz1995">
@@ -622,7 +789,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/11/BFC原理讲解/" itemprop="url">BFC原理讲解</a></h1>
+                <a class="post-title-link" href="/2018/04/21/Array.prototype.slice.call()方法详解/" itemprop="url">Array.prototype.slice.call()方法详解</a></h1>
         
 
         <div class="post-meta">
@@ -634,8 +801,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-11T14:32:41+08:00">
-                2018-11-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T21:45:19+08:00">
+                2018-04-21
               </time>
             
 
@@ -666,25 +833,25 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
                   11
                 </span>
               
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
             </div>
           
 
@@ -704,25 +871,10 @@
 
       
         
-          <p> 本文讲了BFC的概念是什么； BFC的约束规则；咋样才能触发生成新的BFC；BFC在布局中的应用：防止margin重叠(塌陷,以最大的为准)； 清除内部浮动；自适应两（多）栏布局。</p>
-<h3 id="1-BFC是什么？"><a href="#1-BFC是什么？" class="headerlink" title="1. BFC是什么？"></a><a href=""></a><a href="https://juejin.im/entry/59c3713a518825396f4f6969#1-bfc%E6%98%AF%E4%BB%80%E4%B9%88" target="_blank" rel="noopener"></a>1. BFC是什么？</h3><p><code>Block fomatting context</code>  =  <code>block-level box</code>  +  <code>Formatting Context</code> </p>
-<h4 id="Box"><a href="#Box" class="headerlink" title="Box:"></a><a href="https://juejin.im/entry/59c3713a518825396f4f6969#box" target="_blank" rel="noopener"></a>Box:</h4><p>Box即盒子模型；</p>
-<ul>
-<li><p>block-level box即块级元素</p>
-<blockquote>
-<p>display属性为block, list-item, table的元素，会生成block-level box；并且参与  <code>block fomatting context</code> ；</p>
-</blockquote>
-</li>
-<li><p>inline-level box即行内元素</p>
-<blockquote>
-<p>display 属性为 inline, inline-block, inline-table的元素，会生成inline-level box。并且参与  <code>inline formatting context</code> ；</p></blockquote></li></ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/11/BFC原理讲解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <p>  转载自：<a href="https://www.cnblogs.com/dingxiaoyue/p/4948166.html" target="_blank" rel="noopener">https://www.cnblogs.com/dingxiaoyue/p/4948166.html</a>   </p>
+
+          
         
       
     </div>
@@ -769,7 +921,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/CSS3(常用)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/16/js中apply和call的用法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zz1995">
@@ -788,7 +940,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/02/CSS3(常用)/" itemprop="url">CSS3（常用）</a></h1>
+                <a class="post-title-link" href="/2018/04/16/js中apply和call的用法/" itemprop="url">js中apply和call的用法</a></h1>
         
 
         <div class="post-meta">
@@ -800,8 +952,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-02T19:37:21+08:00">
-                2018-11-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-16T22:24:10+08:00">
+                2018-04-16
               </time>
             
 
@@ -832,7 +984,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  260
                 </span>
               
 
@@ -871,7 +1023,14 @@
       
         
           
-            <p><img src="https://img-blog.csdnimg.cn/20181102193701276.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI3MzQ2MDc1,size_16,color_FFFFFF,t_70" alt="CSS3(常用)"></p>
+            <p>  每个函数都包含两个非继承而来的方法：apply()和call()。这两个方法的用途都是在特定的作用域中调用函数，实际上等于设置函数体内this对象的值。首先，apply()方法接收两个参数：一个是在其中运行函数的作用域，另一个参数数组（可以是Array的实例，也可以是arguments对象）。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function sum(num1,num2)&#123;</span><br><span class="line">    return num1+num2;</span><br><span class="line">&#125;</span><br><span class="line">function callSum1(num1,num2)&#123;</span><br><span class="line">    return sum.apply(this,arguments);//传入arguments对象</span><br><span class="line">&#125;</span><br><span class="line">function callSum2(num1,num2)&#123;</span><br><span class="line">    return sum.apply(this,[num1,num2]);//传入数组</span><br><span class="line">&#125;</span><br><span class="line">alert(callSum1(10,10));//20</span><br><span class="line">alert(callSum2(10,10));//20</span><br></pre></td></tr></table></figure>
+<p>call()方法与apply()方法的作用相同，区别在于接收参数方式不同。对于call()方法而言，第一个参数与apply()相同，第二个参数必须是直接传递给函数（即传递给函数的参数必须逐个列举出来）。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function sum(num1,num2)&#123;</span><br><span class="line">     return num1+num2;</span><br><span class="line">&#125;</span><br><span class="line">function callSum(num1,num2)&#123;</span><br><span class="line">     return sum.call(this,num1,num2);</span><br><span class="line">&#125;</span><br><span class="line">alert(callSum(10,10));//20</span><br></pre></td></tr></table></figure>
+<hr>
+<p>明天再写</p>
 
           
         
@@ -920,7 +1079,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/31/H5新增(常用)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/16/原型的动态性/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zz1995">
@@ -939,7 +1098,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/31/H5新增(常用)/" itemprop="url">H5新增（常用）</a></h1>
+                <a class="post-title-link" href="/2018/04/16/原型的动态性/" itemprop="url">原型的动态性</a></h1>
         
 
         <div class="post-meta">
@@ -951,8 +1110,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-31T12:30:44+08:00">
-                2018-10-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-16T11:46:35+08:00">
+                2018-04-16
               </time>
             
 
@@ -983,158 +1142,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>  <img src="https://img-blog.csdnimg.cn/20181031122934813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI3MzQ2MDc1,size_16,color_FFFFFF,t_70" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/26/js隐式转换问题/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zz1995">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZZ的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/26/js隐式转换问题/" itemprop="url">js隐式转换问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-26T17:37:39+08:00">
-                2018-10-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  559
+                  511
                 </span>
               
 
@@ -1172,12 +1180,14 @@
 
       
         
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//当下面按钮全选中时，上面按钮也选中</span><br><span class="line">var flag=true;</span><br><span class="line">$tbodyCheckboxs.each(function(i)&#123;</span><br><span class="line"> if($tbodyCheckboxs.eq(i).prop(&apos;checked&apos;)!=&apos;checked&apos;)&#123;</span><br><span class="line">   flag=false;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;) </span><br><span class="line">$(&apos;thead input&apos;).prop(&apos;checked&apos;,flag);</span><br></pre></td></tr></table></figure>
-<p> 今天在项目里写复选框的全选功能时，遇到了一个坑，这个坑就是js的隐式转换，虽然知道这个东西，但是却记错了，搞了半天才发现原来是这么一个小错误。</p>
-<p> 问题：不管下面的复选框选没选中，$tbodyCheckboxs.eq(i).prop(‘checked’) != ‘checked’都返回true，导致flag都会变成false，从而$(‘thead input’)这个总的复选框永远不会被选中。</p>
+          <p>  对原型对象所做的任何修改都能立即从实例上反映出来——即使是先创建了实例后修改原型也照样如此。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">       function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype=&#123;</span><br><span class="line">	name:&quot;Nicholas&quot;,</span><br><span class="line">	age:29,</span><br><span class="line">	job:&quot;Software Engineer&quot;,</span><br><span class="line">	sayName:function()&#123;</span><br><span class="line">		alert(this.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">     var friend=new Person();</span><br><span class="line">    //原型的动态性</span><br><span class="line">    Person.prototype.sayHi=function()&#123;</span><br><span class="line">  	  alert(&quot;hi&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    friend.sayHi();//&quot;hi&quot;</span><br></pre></td></tr></table></figure>
+<p>如代码所示，即使是在实例之后修改原型，friends仍然可以访问到该属性。实例与原型之间的连接只不过是一个指针，而非一个副本。尽管可以随时为原型添加属性和方法，但如果重写原型，那么情况会有所不同。重写原型对象切断了现有原型与任何之前已经存在的对象实例的联系；它们引用的仍然是最初的原型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">        function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line"> var friend=new Person();</span><br><span class="line"> Person.prototype=&#123;</span><br><span class="line">	name:&quot;Greg&quot;,</span><br><span class="line">	age:29,</span><br><span class="line">	job:&quot;Software Engineer&quot;,</span><br><span class="line">	sayName:function()&#123;</span><br><span class="line">		alert(this.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">friend.sayName();//error</span><br></pre></td></tr></table></figure>
+<p>此时返回错误，因为此时原来的原型里面没有sayName属性。同理,下面的例子讲返回“Nicholas”。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/10/26/js隐式转换问题/#more" rel="contents">
+            <a class="btn" href="/2018/04/16/原型的动态性/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1228,7 +1238,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/23/动态网站开发流程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/16/javascript中数组的五种迭代方法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zz1995">
@@ -1247,7 +1257,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/23/动态网站开发流程/" itemprop="url">动态网站开发流程</a></h1>
+                <a class="post-title-link" href="/2018/04/16/javascript中数组的五种迭代方法/" itemprop="url">javascript中数组的五种迭代方法</a></h1>
         
 
         <div class="post-meta">
@@ -1259,8 +1269,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-23T15:03:19+08:00">
-                2018-10-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-16T10:59:41+08:00">
+                2018-04-16
               </time>
             
 
@@ -1291,7 +1301,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  366
                 </span>
               
 
@@ -1329,10 +1339,23 @@
 
       
         
-          
-            <p>  <img src="https://img-blog.csdn.net/20181023150243727?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI3MzQ2MDc1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
-
-          
+          <p>  ES5中为数组定义了5个迭代方法。每个方法接收两个参数：要在每一项上运行的函数和运行该函数的作用域(可选)——影响this的值。传入这些方法中的函数会接收三个参数：数组项的值、该项在数组中的位置、数组对象本身。</p>
+<p>5个迭代方法（都是对数组中的每一项运行给定函数）：</p>
+<p>1.every()：每一项都返回true，则返回true。</p>
+<p>2.filter()：返回true的项组成的数组。</p>
+<p>3.forEach()：没有返回值。</p>
+<p>4.map()：返回调用函数的结果组成的数组。</p>
+<p>5.some()：任一项返回true，则返回true。</p>
+<p>every()和some()具有相似性，先对比两者：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var numbers=[1,2,3,4,5,4,3,2,1];</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//every()</span><br><span class="line">var everyResult =numbers.every(function(item,index,array)&#123;</span><br><span class="line">    return (item&gt;2);</span><br><span class="line">&#125;);</span><br><span class="line">alert(everyResult);//false</span><br><span class="line"></span><br><span class="line">//some()</span><br><span class="line">var someResult=numbers.some(function(item,index,array)&#123;</span><br><span class="line">    return (item&gt;2);</span><br><span class="line">&#125;);</span><br><span class="line">alert(someResult);//true</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/16/javascript中数组的五种迭代方法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1379,7 +1402,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/21/xml声明之前不能有空格空行/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/09/正则表达式中字符串模式匹配方法exec和match的区别/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zz1995">
@@ -1398,7 +1421,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/21/xml声明之前不能有空格空行/" itemprop="url">xml声明之前不能有空格空行</a></h1>
+                <a class="post-title-link" href="/2018/04/09/正则表达式中字符串模式匹配方法exec和match的区别/" itemprop="url">正则表达式中字符串模式匹配方法exec和match的区别</a></h1>
         
 
         <div class="post-meta">
@@ -1410,8 +1433,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T23:09:22+08:00">
-                2018-10-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T10:30:47+08:00">
+                2018-04-09
               </time>
             
 
@@ -1442,7 +1465,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  323
+                  544
                 </span>
               
 
@@ -1458,7 +1481,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -1480,18 +1503,16 @@
 
       
         
-          
-            <p>  <strong> 注意：</strong>XML 声明通常在 XML 文档的第一行出现。 XML 声明不是必选项，但是如果使用 XML 声明，必须在文档的第一行，前面不得有空格空行。</p>
-<p> 出现问题场景：用ajax请求服务端的xml数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"> &lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">	&lt;title&gt;ajax请求xml数据&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">		var xhr=new XMLHttpRequest();</span><br><span class="line">		xhr.open(&apos;GET&apos;,&apos;data.php&apos;);</span><br><span class="line">		xhr.send();</span><br><span class="line">		xhr.onreadystatechange=function()&#123;</span><br><span class="line">			if(this.readyState!=4) return;</span><br><span class="line">			// console.log(this.responseText);</span><br><span class="line">			//this.responseXML专门获取服务端返回的xml数据，操作方式是通过dom的方式操作</span><br><span class="line">			//但是需要服务端的响应头中的Content-Type设置为application/xml</span><br><span class="line">			console.log(this);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p> 注意：下面的xml声明前有空行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> &lt;?php </span><br><span class="line">//不管服务端返回的数据是哪种类型，都在content-type写清楚</span><br><span class="line">header(&apos;Content-Type: application/xml&apos;);</span><br><span class="line"> ?&gt;</span><br><span class="line"> </span><br><span class="line">&lt;?xml version=&quot;1.1&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;person&gt;</span><br><span class="line">	&lt;student&gt;石羊&lt;/student&gt;</span><br><span class="line">	&lt;age&gt;18&lt;/age&gt;</span><br><span class="line">	&lt;gender&gt;男&lt;/gender&gt;</span><br><span class="line">&lt;/person&gt;</span><br></pre></td></tr></table></figure>
-<p> 这时候输出的内容responseXML的值为null，出现了不是想要的结果！！！</p>
-<p> <img src="https://img-blog.csdn.net/20181021230541317?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI3MzQ2MDc1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
-<p> 去掉xml声明前的空格后：出现了想要的结果。</p>
-<p> <img src="https://img-blog.csdn.net/20181021230834125?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI3MzQ2MDc1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
-
-          
+          <p>  js正则表达式中字符串模式匹配方法exec()和match()的有相近的作用,但也存在一些需要注意的区别。</p>
+<p>第一点！！！这是没有设置全局标志g的情况：exec专门为捕获组而设计，可接受一个参数，即要应用模式的字符串，然后返回一个数组（没有捕获组时，数组只包含一项，即第一个匹配项信息；有捕获组时，其他项是模式中的捕获组匹配的字符串）。match也只接受一个参数，即一个正则表达式或regExp对象，返回的是一个数组，与exec相同。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var text=&quot;cat, bat, sat, fat&quot;;</span><br><span class="line">var pattern=/.at/;</span><br><span class="line"></span><br><span class="line">var matches=text.match(pattern);</span><br><span class="line">var matches1=pattern.exec(text);</span><br><span class="line">console.log(matches);</span><br><span class="line">console.log(matches.index);</span><br><span class="line">console.log(matches[0]);</span><br><span class="line">       </span><br><span class="line">console.log(matches1);</span><br><span class="line">console.log(matches1.index);</span><br><span class="line">console.log(matches1[0]);</span><br><span class="line"></span><br><span class="line">console.log(pattern.lastIndex)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/09/正则表达式中字符串模式匹配方法exec和match的区别/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1538,7 +1559,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/01/value与innerHTML，innerText的区别/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/24/javascript中关于事件句柄EventListener的疑问记录/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zz1995">
@@ -1557,7 +1578,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/01/value与innerHTML，innerText的区别/" itemprop="url">value与innerHTML，innerText的区别</a></h1>
+                <a class="post-title-link" href="/2018/03/24/javascript中关于事件句柄EventListener的疑问记录/" itemprop="url">javascript中关于事件句柄EventListener的疑问记录</a></h1>
         
 
         <div class="post-meta">
@@ -1569,8 +1590,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-01T16:33:24+08:00">
-                2018-10-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-24T18:32:41+08:00">
+                2018-03-24
               </time>
             
 
@@ -1601,7 +1622,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  203
+                  941
                 </span>
               
 
@@ -1617,7 +1638,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  4
                 </span>
               
             </div>
@@ -1639,19 +1660,17 @@
 
       
         
-          
-            <p>  value与innerHTML，innerText的区别：</p>
-<p> innerHTML与innerText的区别我就不讲了，主要讲value与这两者的区别！</p>
-<p> 1.value是表单元素的特有属性，非表单元素没有value属性，如div，span等；</p>
-<p> 2.value在不同表单元素里有不同的意义，如button为按钮中的文本，input（text）为默认文本，textarea为默认文本。。。</p>
-<p> 所以操作表单元素的文本内容用value；而innerHTML与innerText操作非表单元素的内容或文本内容。</p>
-<p> 3.举例说明：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> &lt;input type=&quot;text&quot; value=&quot;123456&quot; id=&quot;userName&quot;/&gt;&lt;br/&gt;</span><br><span class="line">&lt;textarea name=&quot;&quot; id=&quot;tt&quot; cols=&quot;30&quot; rows=&quot;10&quot; &gt;123&lt;/textarea&gt;&lt;br/&gt;</span><br></pre></td></tr></table></figure>
-<p> console.log(document.getElementById(“userName”).value); ——–”123456”</p>
-<p> console.log(document.getElementById(“tt”).value); ——–”123”</p>
-<p> 所以获取表单元素的内容时用value属性。</p>
-
-          
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">	&lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;p id=&quot;pid&quot;&gt;Hello&lt;/p&gt;</span><br><span class="line">	&lt;button id=&quot;btn&quot;&gt;按钮&lt;/button&gt;</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">		var x=document.getElementById(&quot;btn&quot;);</span><br><span class="line">		x.addEventListener(&quot;click&quot;,hello);//句柄</span><br><span class="line">		x.addEventListener(&quot;click&quot;,world);</span><br><span class="line">		x.removeEventListener(&quot;click&quot;,hello);</span><br><span class="line">		function hello()&#123;</span><br><span class="line">			alert(&quot;Hello&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		function world()&#123;</span><br><span class="line">			alert(&quot;world&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="情况1："><a href="#情况1：" class="headerlink" title="情况1："></a><strong>情况1：</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x.addEventListener(&quot;click&quot;,hello);//句柄</span><br><span class="line">x.addEventListener(&quot;click&quot;,world);</span><br><span class="line">//x.removeEventListener(&quot;click&quot;,hello);</span><br></pre></td></tr></table></figure>
+<p>在视频教学中，说此处的函数调用不用加()，此时运行的结果是：<br><img src="https://img-blog.csdn.net/20180324173640502" alt=""></p>
+<p>点击按钮，会弹出消息框“hello”,点击确定后，会再弹出对话框”world”。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/24/javascript中关于事件句柄EventListener的疑问记录/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1698,7 +1717,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/25/检测数据类型typeof的一个易错点/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/20/javascript中for循环和标签元素赋值问题/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zz1995">
@@ -1717,7 +1736,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/25/检测数据类型typeof的一个易错点/" itemprop="url">检测数据类型typeof的一个易错点</a></h1>
+                <a class="post-title-link" href="/2018/03/20/javascript中for循环和标签元素赋值问题/" itemprop="url">javascript中for循环和标签元素赋值问题</a></h1>
         
 
         <div class="post-meta">
@@ -1729,8 +1748,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-25T13:06:19+08:00">
-                2018-09-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-20T09:20:16+08:00">
+                2018-03-20
               </time>
             
 
@@ -1761,7 +1780,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  413
+                  516
                 </span>
               
 
@@ -1777,7 +1796,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -1799,15 +1818,16 @@
 
       
         
-          
-            <p>  切记 ！！！typeof返回的值是一个字符串！！！</p>
-<p> 出错的代码：：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"> &lt;body&gt;</span><br><span class="line">&lt;ul id=&quot;uu&quot;&gt;</span><br><span class="line">    &lt;li&gt;第一个&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;第二个&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;第三个&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;第四个&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;第五个&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src=&quot;common.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    //IE8获取节点的代码变成了获取元素，获取元素的返回undefined   所以要有兼容代码</span><br><span class="line"></span><br><span class="line">    //以获取第一和最后一个子元素为例</span><br><span class="line"></span><br><span class="line">    //获取任意父元素的第一个子元素</span><br><span class="line">    function getFirstElementChildByParent(element) &#123;</span><br><span class="line">        if (typeof element.firstElementChild != undefined) &#123;</span><br><span class="line">            //切记typeof返回的是字符串，所以我之前undefined没加引号，一直有问题，因为&quot;undefined&quot;！=undefined肯定是正确的</span><br><span class="line">            return element.firstElementChild;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // return element.firstChild;</span><br><span class="line">            //本来针对ie8这样就够了，但为了更严谨，比如有浏览器不识别firstElementChild，识别firstChild，但返回的又确实是第一个子节点</span><br><span class="line"></span><br><span class="line">            var node = element.firstChild;</span><br><span class="line">            while (node &amp;&amp; node.nodeType != 1) &#123;</span><br><span class="line">                node = node.nextSibling;</span><br><span class="line">            &#125;</span><br><span class="line">            return node;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(getFirstElementChildByParent(my$(&quot;uu&quot;)));</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p> 此段代码为获取子元素的兼容代码，本来判断一个属性是否在浏览器中支持，是看它的类型是否是undefined，所以我写了</p>
-<p> typeof element.firstElementChild != undefined，但发现不支持的ie8也返回了true，难道undefined !=undefined不是false吗？？然后去找了半天，也没解决，结果最后才发现typeof返回的数据类型的值是一个字符串啊！！此时”undefined”!=undefined肯定一直是true，这才恍然大悟。 </p>
-<p> 所以正确的代码应为：typeof element.firstElementChild != “undefined”</p>
-
-          
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;p&gt;点击下面的按钮，将代码块循环五次：&lt;/p&gt;</span><br><span class="line">&lt;button onclick=&quot;myFunction()&quot;&gt;点击这里&lt;/button&gt;</span><br><span class="line">&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function myFunction()</span><br><span class="line">&#123;</span><br><span class="line">var x=&quot;&quot;;</span><br><span class="line">for (var i=0;i&lt;5;i++)</span><br><span class="line">  &#123;</span><br><span class="line">  x=x + &quot;The number is &quot; + i + &quot;&lt;br&gt;&quot;;</span><br><span class="line">document.getElementById(&quot;demo&quot;).innerHTML=x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;p&gt;点击下面的按钮，将代码块循环五次：&lt;/p&gt;</span><br><span class="line">&lt;button onclick=&quot;myFunction()&quot;&gt;点击这里&lt;/button&gt;</span><br><span class="line">&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">function myFunction()</span><br><span class="line">&#123;</span><br><span class="line">var x=&quot;&quot;;</span><br><span class="line">for (var i=0;i&lt;5;i++)</span><br><span class="line">  &#123;</span><br><span class="line">  x=x + &quot;The number is &quot; + i + &quot;&lt;br&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">document.getElementById(&quot;demo&quot;).innerHTML=x;</span><br><span class="line">&#125;</span><br><span class="line"> &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>上面两段代码是来自w3school中的一个关于for循环和标签元素赋值的问题的例子，我是之前一直纠结于将document.getElementById(“demo”).innerHTML=x;放在for循环内外结果为什么一样?</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/20/javascript中for循环和标签元素赋值问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1845,7 +1865,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
