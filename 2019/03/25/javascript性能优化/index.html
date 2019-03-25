@@ -76,7 +76,7 @@
 
 
 
-  <meta name="keywords" content="CSDN迁移,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -89,20 +89,19 @@
 
 
 
-<meta name="description" content="对原型对象所做的任何修改都能立即从实例上反映出来——即使是先创建了实例后修改原型也照样如此。 1234567891011121314151617       function Person()&amp;#123;&amp;#125;Person.prototype=&amp;#123;	name:&amp;quot;Nicholas&amp;quot;,	age:29,	job:&amp;quot;Software Engineer&amp;quo">
-<meta name="keywords" content="CSDN迁移">
+<meta name="description" content="&amp;lt;!--more--&amp;gt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="原型的动态性">
-<meta property="og:url" content="https://www.zzckg.com/2018/04/16/原型的动态性/index.html">
+<meta property="og:title" content="javascript性能优化">
+<meta property="og:url" content="https://www.zzckg.com/2019/03/25/javascript性能优化/index.html">
 <meta property="og:site_name" content="ZZ的个人博客">
-<meta property="og:description" content="对原型对象所做的任何修改都能立即从实例上反映出来——即使是先创建了实例后修改原型也照样如此。 1234567891011121314151617       function Person()&amp;#123;&amp;#125;Person.prototype=&amp;#123;	name:&amp;quot;Nicholas&amp;quot;,	age:29,	job:&amp;quot;Software Engineer&amp;quo">
+<meta property="og:description" content="&amp;lt;!--more--&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://static-blog.csdn.net/xheditor/xheditor_emot/default/laugh.gif">
-<meta property="og:updated_time" content="2018-11-28T05:58:56.650Z">
+<meta property="og:image" content="https://www.zzckg.com/2019/03/25/javascript性能优化/C:/Users/Administrator/Desktop/javascript性能优化.png">
+<meta property="og:updated_time" content="2019-03-25T06:39:36.439Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原型的动态性">
-<meta name="twitter:description" content="对原型对象所做的任何修改都能立即从实例上反映出来——即使是先创建了实例后修改原型也照样如此。 1234567891011121314151617       function Person()&amp;#123;&amp;#125;Person.prototype=&amp;#123;	name:&amp;quot;Nicholas&amp;quot;,	age:29,	job:&amp;quot;Software Engineer&amp;quo">
-<meta name="twitter:image" content="https://static-blog.csdn.net/xheditor/xheditor_emot/default/laugh.gif">
+<meta name="twitter:title" content="javascript性能优化">
+<meta name="twitter:description" content="&amp;lt;!--more--&amp;gt;">
+<meta name="twitter:image" content="https://www.zzckg.com/2019/03/25/javascript性能优化/C:/Users/Administrator/Desktop/javascript性能优化.png">
 
 
 
@@ -132,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="https://www.zzckg.com/2018/04/16/原型的动态性/">
+  <link rel="canonical" href="https://www.zzckg.com/2019/03/25/javascript性能优化/">
 
 
 
 
 
-  <title>原型的动态性 | ZZ的个人博客</title>
+  <title>javascript性能优化 | ZZ的个人博客</title>
   
 
 
@@ -297,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.zzckg.com/2018/04/16/原型的动态性/">
+    <link itemprop="mainEntityOfPage" href="https://www.zzckg.com/2019/03/25/javascript性能优化/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zz1995">
@@ -314,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">原型的动态性</h1>
+          <h1 class="post-title" itemprop="name headline">javascript性能优化</h1>
         
 
         <div class="post-meta">
@@ -326,8 +325,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-16T11:46:35+08:00">
-                2018-04-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-25T14:38:12+08:00">
+                2019-03-25
               </time>
             
 
@@ -358,7 +357,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  511
+                  3
                 </span>
               
 
@@ -374,7 +373,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  1
                 </span>
               
             </div>
@@ -395,16 +394,9 @@
       
 
       
-        <p>  对原型对象所做的任何修改都能立即从实例上反映出来——即使是先创建了实例后修改原型也照样如此。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">       function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype=&#123;</span><br><span class="line">	name:&quot;Nicholas&quot;,</span><br><span class="line">	age:29,</span><br><span class="line">	job:&quot;Software Engineer&quot;,</span><br><span class="line">	sayName:function()&#123;</span><br><span class="line">		alert(this.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">     var friend=new Person();</span><br><span class="line">    //原型的动态性</span><br><span class="line">    Person.prototype.sayHi=function()&#123;</span><br><span class="line">  	  alert(&quot;hi&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    friend.sayHi();//&quot;hi&quot;</span><br></pre></td></tr></table></figure>
-<p>如代码所示，即使是在实例之后修改原型，friends仍然可以访问到该属性。实例与原型之间的连接只不过是一个指针，而非一个副本。尽管可以随时为原型添加属性和方法，但如果重写原型，那么情况会有所不同。重写原型对象切断了现有原型与任何之前已经存在的对象实例的联系；它们引用的仍然是最初的原型。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">        function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line"> var friend=new Person();</span><br><span class="line"> Person.prototype=&#123;</span><br><span class="line">	name:&quot;Greg&quot;,</span><br><span class="line">	age:29,</span><br><span class="line">	job:&quot;Software Engineer&quot;,</span><br><span class="line">	sayName:function()&#123;</span><br><span class="line">		alert(this.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">friend.sayName();//error</span><br></pre></td></tr></table></figure>
-<p>此时返回错误，因为此时原来的原型里面没有sayName属性。同理,下面的例子讲返回“Nicholas”。</p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">        function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype=&#123;</span><br><span class="line">	name:&quot;Nicholas&quot;,</span><br><span class="line">	age:29,</span><br><span class="line">	job:&quot;Software Engineer&quot;,</span><br><span class="line">	sayName:function()&#123;</span><br><span class="line">		alert(this.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"> var friend=new Person();</span><br><span class="line"> </span><br><span class="line"> Person.prototype=&#123;</span><br><span class="line">	name:&quot;Greg&quot;,</span><br><span class="line">	age:29,</span><br><span class="line">	job:&quot;Software Engineer&quot;,</span><br><span class="line">	sayName:function()&#123;</span><br><span class="line">		alert(this.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">friend.sayName();//Nicholas</span><br></pre></td></tr></table></figure>
-<p> <strong> 小结：可以修改原型属性和方法，无论是在对象实例的前后。但不可以重写原型，此时对象实例仍然指针指向原来的原型，即创建的原型一定要在对象实例之前才会起作用。如果创建的两个原型都在对象实例之前，后面的一个会起作用。</strong>  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">       function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">      Person.prototype=&#123;</span><br><span class="line">	name:&quot;Nicholas&quot;,</span><br><span class="line">	age:29,</span><br><span class="line">	job:&quot;Software Engineer&quot;,</span><br><span class="line">	sayName:function()&#123;</span><br><span class="line">		alert(this.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Person.prototype=&#123;</span><br><span class="line">	name:&quot;Greg&quot;,</span><br><span class="line">	age:29,</span><br><span class="line">	job:&quot;Software Engineer&quot;,</span><br><span class="line">	sayName:function()&#123;</span><br><span class="line">		alert(this.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"> var friend=new Person();</span><br><span class="line"> </span><br><span class="line">friend.sayName();//Greg</span><br></pre></td></tr></table></figure>
-<p><img src="https://static-blog.csdn.net/xheditor/xheditor_emot/default/laugh.gif" alt="大笑">有问题有想法欢迎交流，共同进步！  </p>
+        <!--<meta name="referrer" content="no-referrer" />-->
+<p> <img src="/2019/03/25/javascript性能优化/C:/Users\Administrator\Desktop\javascript性能优化.png" alt=""></p>
+<p><code>&lt;!--more--&gt;</code></p>
 
       
     </div>
@@ -420,12 +412,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/CSDN迁移/" rel="tag"># CSDN迁移</a>
-          
-        </div>
-      
 
       
       
@@ -435,8 +421,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/16/javascript中数组的五种迭代方法/" rel="next" title="javascript中数组的五种迭代方法">
-                <i class="fa fa-chevron-left"></i> javascript中数组的五种迭代方法
+              <a href="/2019/03/25/数据结构与算法概要/" rel="next" title="数据结构与算法概要">
+                <i class="fa fa-chevron-left"></i> 数据结构与算法概要
               </a>
             
           </div>
@@ -444,10 +430,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/16/js中apply和call的用法/" rel="prev" title="js中apply和call的用法">
-                js中apply和call的用法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
